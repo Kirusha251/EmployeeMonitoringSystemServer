@@ -11,6 +11,6 @@ import java.util.Date;
  */
 public interface EventRepository extends JpaRepository<Event, Integer> {
     Event findByEventId(Integer eventId);
-    Collection<Event> findAllByEventDateBetween(Date since, Date until);
+    Collection<Event> findAllByEmployeeIdAndEventDateBetweenOrderByEventDateAsc(Integer employeeId, Date since, Date until);
     Event findByEmployeeId(Integer employeeId);
 }

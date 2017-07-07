@@ -3,6 +3,7 @@ package by.specificgroup.kirill.service;
 import by.specificgroup.kirill.model.Event;
 
 import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.Date;
 
@@ -12,6 +13,6 @@ import java.util.Date;
 public interface EventService {
     Event findById(Integer id);
     Event findByEmployeeId(Integer employeeId);
-    Timestamp countTimeForEmployee()
+    LocalTime countTimeAtWork(Integer employeeId, Date since, Date until);
     Collection<Event> findAll();
 }
