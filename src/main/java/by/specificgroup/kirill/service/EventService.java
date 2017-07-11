@@ -13,6 +13,6 @@ import java.util.Date;
 public interface EventService {
     Event findById(Integer id);
     Event findByEmployeeId(Integer employeeId);
-    LocalTime countTimeAtWork(Integer employeeId, Date since, Date until);
+    Long countTimeAtWork(Integer employeeId, Date since, Date until, Integer countMode);
     Collection<Event> findAll();
 }

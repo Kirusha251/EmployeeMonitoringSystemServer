@@ -14,7 +14,6 @@ import java.util.Date;
 /**
  * Created by user1 on 7/4/2017.
  */
-@CrossOrigin
 @RestController
 public class EmployeeController {
     @Autowired

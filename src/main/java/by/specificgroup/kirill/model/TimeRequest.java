@@ -7,14 +7,29 @@ import java.util.Date;
  */
 public class TimeRequest {
     String fio;
-    Date date;
+    Date since;
+    Date until;
+    int countMode;
+
 
     public TimeRequest() {
+        since = new Date();
+        until = new Date();
     }
 
-    public TimeRequest(String fio, Date date) {
+    public TimeRequest(String fio, Date since, Date until, int countMode) {
         this.fio = fio;
-        this.date = date;
+        this.since = since;
+        this.until = until;
+        this.countMode = countMode;
+    }
+
+    public int getCountMode() {
+        return countMode;
+    }
+
+    public void setCountMode(int countMode) {
+        this.countMode = countMode;
     }
 
     public String getFio() {
@@ -25,11 +40,19 @@ public class TimeRequest {
         this.fio = fio;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getSince() {
+        return since;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setSince(Date since) {
+        this.since = since;
+    }
+
+    public Date getUntil() {
+        return until;
+    }
+
+    public void setUntil(Date until) {
+        this.until = until;
     }
 }
