@@ -27,11 +27,10 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employees/{id}", method = RequestMethod.GET)
     public ResponseEntity<Employee> getEmployeeById(@PathVariable String id) {
+        if(employeeService.findById(Integer.valueOf(id))== null){
+            return  new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<Employee>(employeeService.findById(Integer.valueOf(id)), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/employees/{id}/{date}", method = RequestMethod.GET)
-    public ResponseEntity<Date> getTimeOnSiteByDate(@PathVariable String id, @PathVariable String date){
-        return null;
-    }
 }

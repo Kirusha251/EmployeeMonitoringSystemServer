@@ -112,7 +112,7 @@ public class EventServiceImpl implements EventService {
         long seconds = 0;
         LocalDateTime currentDate = LocalDate.now().atTime(0, 0, 0);
         LocalDateTime date = currentDate.minusDays(currentDate.getDayOfWeek().getValue() - 1);
-        while (date.getDayOfWeek() != DayOfWeek.SUNDAY) {
+        for (int i = 0; i < DayOfWeek.SUNDAY.getValue(); i++) {
             seconds += countTimePerDay(employeeId, date, date.plusDays(1));
             date = date.plusDays(1);
         }

@@ -35,15 +35,23 @@ public class EventController {
 
     @RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
     public ResponseEntity<Event> getEventById(String id) {
+        if(eventService.findById(Integer.valueOf(id))==null){
+            return new ResponseEntity<Event>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<Event>(eventService.findById(Integer.valueOf(id)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/events/time-at-object", method = RequestMethod.POST)
     public ResponseEntity<String> getTimeAtObject(@RequestBody TimeRequest timeRequest) {
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-        Long time = eventService.countTimeAtWork(employeeService.findByFIO(timeRequest.getFio()).getEmployeeId(),
-                timeRequest.getSince(), timeRequest.getUntil(), timeRequest.getCountMode());
-        String display = String.format("%02d:%02d:%02d", time / 3600, (time % 3600) / 60, (time % 60));
-        return new ResponseEntity<String>(display, HttpStatus.OK);
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+            Long time = eventService.countTimeAtWork(employeeService.findByFIO(timeRequest.getFio()).getEmployeeId(),
+                    timeRequest.getSince(), timeRequest.getUntil(), timeRequest.getCountMode());
+            String display = String.format("%02d:%02d:%02d", time / 3600, (time % 3600) / 60, (time % 60));
+            return new ResponseEntity<String>(display, HttpStatus.OK);
+        }catch (NullPointerException ex){
+            System.out.println(ex.getMessage());
+        }
+        return new ResponseEntity<String>("",HttpStatus.BAD_REQUEST);
     }
 }
